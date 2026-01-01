@@ -12,6 +12,8 @@ import io.restassured.specification.ResponseSpecification;
 import resources.TestDataBuild;
 import resources.Utils;
 
+import java.io.FileNotFoundException;
+
 import static io.restassured.RestAssured.*;
 import static org.junit.Assert.*;
 
@@ -24,11 +26,16 @@ public class StepDefinition extends Utils {
     TestDataBuild data = new TestDataBuild();
 
     @Given("AddPlace payload")
-    public void add_place_payload() {
+    public void add_place_payload() throws FileNotFoundException {
 
         req2 = given()
                 .spec(requestSpecification())
                 .body(data.addPlacePayload());
+
+    }
+
+    @When("user calls AddPlace API with POST HTTP request")
+    public void user_calls_add_place_api_with_post_http_request() {
 
         /* ResponseSpecBuilder */
         res2 = new ResponseSpecBuilder()
@@ -36,10 +43,6 @@ public class StepDefinition extends Utils {
                 .expectContentType(ContentType.JSON)
                 .build();
 
-    }
-
-    @When("user calls AddPlace API with POST HTTP request")
-    public void user_calls_add_place_api_with_post_http_request() {
         mainResp = req2
                 .when()
                 .post("/maps/api/place/add/json")

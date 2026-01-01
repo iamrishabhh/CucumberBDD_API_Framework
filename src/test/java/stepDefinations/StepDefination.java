@@ -12,14 +12,12 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import resources.TestDataBuild;
+import resources.Utils;
 
 import static io.restassured.RestAssured.*;
 import static org.junit.Assert.*;
 
-public class StepDefination {
-
-    public static String baseURL = "https://rahulshettyacademy.com";
-    public static String keyValue = "qaclick123";
+public class StepDefination extends Utils {
 
     RequestSpecification req2;
     ResponseSpecification res2;
@@ -29,16 +27,9 @@ public class StepDefination {
 
     @Given("AddPlace payload")
     public void add_place_payload() {
-        RestAssured.baseURI = baseURL;
-
-        /* RequestSpecBuilder */
-        RequestSpecification req = new RequestSpecBuilder().setBaseUri(baseURL)
-                .addQueryParam("key", keyValue)
-                .setContentType(ContentType.JSON)
-                .build();
 
         req2 = given()
-                .spec(req)
+                .spec(requestSpecification())
                 .body(data.addPlacePayload());
 
         /* ResponseSpecBuilder */

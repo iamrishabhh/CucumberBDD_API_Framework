@@ -62,12 +62,10 @@ public class StepDefination {
     @Then("the API call is success with status code {int}")
     public void the_api_call_is_success_with_status_code(Integer int1) {
         assertEquals(mainResp.getStatusCode(),200);
-        System.out.println("Actual status code: "+mainResp.getStatusCode());
     }
     @Then("{string} in response body is {string}")
     public void status_in_response_body_is_ok(String keyValue, String expectedValue) {
         String responseBody = mainResp.asString();
-        System.out.println(responseBody);
         JsonPath js = new JsonPath(responseBody);
         assertEquals(js.get(keyValue).toString(), expectedValue);
     }

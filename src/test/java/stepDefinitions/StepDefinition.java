@@ -1,10 +1,8 @@
-package stepDefinations;
+package stepDefinitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -17,7 +15,7 @@ import resources.Utils;
 import static io.restassured.RestAssured.*;
 import static org.junit.Assert.*;
 
-public class StepDefination extends Utils {
+public class StepDefinition extends Utils {
 
     RequestSpecification req2;
     ResponseSpecification res2;

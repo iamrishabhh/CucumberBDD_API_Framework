@@ -26,12 +26,12 @@ public class StepDefinition extends Utils {
 
     TestDataBuild data = new TestDataBuild();
 
-    @Given("AddPlace payload")
-    public void add_place_payload() throws IOException {
+    @Given("AddPlace payload with {string} {string} {string}")
+    public void add_place_payload_with(String name, String language, String address) throws IOException {
 
         req2 = given()
                 .spec(requestSpecification())
-                .body(data.addPlacePayload());
+                .body(data.addPlacePayload(name, language, address));
 
     }
 

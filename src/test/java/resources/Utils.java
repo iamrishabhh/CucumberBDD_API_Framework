@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class Utils {
 
-    RequestSpecification request;
+    public static RequestSpecification request;
 
     public static  String getGlobalValue(String key) throws IOException {
         Properties prop = new Properties();
@@ -22,15 +22,18 @@ public class Utils {
 
     public RequestSpecification requestSpecification() throws IOException {
 
-        PrintStream log = new PrintStream(new FileOutputStream("executionLogs.txt"));
+        if (request == null){
+            PrintStream log = new PrintStream(new FileOutputStream("executionLogs.txt"));
 
-        /* RequestSpecBuilder */
-        request = new RequestSpecBuilder().setBaseUri(getGlobalValue("baseURL"))
-                .addQueryParam("key", getGlobalValue("key"))
-                .addFilter(RequestLoggingFilter.logRequestTo(log))
-                .addFilter(ResponseLoggingFilter.logResponseTo(log))
-                .setContentType(ContentType.JSON)
-                .build();
+            /* RequestSpecBuilder */
+            request = new RequestSpecBuilder().setBaseUri(getGlobalValue("baseURL"))
+                    .addQueryParam("key", getGlobalValue("key"))
+                    .addFilter(RequestLoggingFilter.logRequestTo(log))
+                    .addFilter(ResponseLoggingFilter.logResponseTo(log))
+                    .setContentType(ContentType.JSON)
+                    .build();
+            return  request;
+        }
 
         return  request;
     }

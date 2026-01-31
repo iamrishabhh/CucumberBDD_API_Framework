@@ -9,4 +9,5 @@ Feature: Validating Place APIs
 
     Examples:
       | name       | language | address  |
-      | Tony Stark | English  | Avengers |
+      | Tony Stark | English  | Avengers HQ |
+      | Bruce Wayne | Spanish  | Justice League HQ |
